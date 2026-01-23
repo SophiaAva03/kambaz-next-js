@@ -108,6 +108,3 @@ export default function Assignments() {
         </ul>
     </div>
 );}
-
-// to do:
-// project section
