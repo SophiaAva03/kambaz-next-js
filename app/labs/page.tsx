@@ -2,6 +2,10 @@ import Link from "next/link";
 export default function labs() {
  return (
    <div id="wd-labs">
+     <h1>Sophia Allen</h1>
+     <h2>Git Repository</h2>
+     <a href="https://github.com/SophiaAva03/kambaz-next-js" 
+      id="wd-github" target="_blank">GitHub Repository (Main Branch)</a><br/>
      <h1>Labs</h1>
      <ul>
        <li>
