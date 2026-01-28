@@ -5,6 +5,9 @@ import Borders from "./Borders";
 import Padding from "./Padding";
 import Margins from "./Margins";
 import Corners from "./Corners";
+import Dimensions from "./Dimensions";
+import Positions from "./Positions"
+import Zindex from "./Zindex"
 
 export default function Lab2() {
   return (
@@ -63,6 +66,9 @@ export default function Lab2() {
       <Padding />
       <Margins />
       <Corners />
+      <Dimensions />
+      <Positions />
+      <Zindex />
     </div>
   );
 }
