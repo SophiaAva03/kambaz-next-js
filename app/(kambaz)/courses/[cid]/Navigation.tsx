@@ -2,8 +2,7 @@ import Link from "next/link";
 
 export default function CourseNavigation() {
   return (
-    <div id="wd-courses-navigation">
-      <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
       <Link href="/courses/1234/home" id="wd-course-home-link"
         className="list-group-item active border-0"> Home </Link>
       <Link href="/courses/1234/modules" id="wd-course-modules-link"
@@ -18,6 +17,5 @@ export default function CourseNavigation() {
         className="list-group-item text-danger border-0"> Quizzes </Link>
       <Link href="/courses/1234/people/table" id="wd-course-people-link"
         className="list-group-item text-danger border-0" > People </Link>
-    </div>
     </div>
   );}
