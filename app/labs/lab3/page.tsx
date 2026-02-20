@@ -28,11 +28,16 @@ import Styles from "./Styles";
 import ClientComponentDemo from "./ClientComponentDemo";
 import ServerComponentDemo from "./ServerComponentDemo";
 import Add from "./Add";
+import Square from "./Square";
+import Highlight from "./Highlight";
+import PathParameters from "./PathParameters";
+import TodoList from "./todos/ToDoList";
 
 export default function Lab3() {
+  console.log('Hello World!');
   return (
     <div>
-      <h2>Lab 3</h2>
+      <h2>Lab 3 - JavaScript</h2>
       <VariablesAndConstants />
       <VariableTypes />
       <BooleanVariables />
@@ -64,6 +69,17 @@ export default function Lab3() {
       <ClientComponentDemo />
       <ServerComponentDemo />
       <Add a={3} b={4} />
+      <h4>Square of 4</h4>
+      <Square>4</Square>
+      <hr />
+      <Highlight>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione eaque illo minus cum, saepe totam
+        vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores, provident voluptates.
+      </Highlight>
+      <hr />
+      <PathParameters />
+      <hr />
+      <TodoList />
     </div>
   );
 }
