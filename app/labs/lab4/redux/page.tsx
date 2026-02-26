@@ -4,6 +4,8 @@ import store from "../store";
 import { Provider } from "react-redux";
 import HelloRedux from "./hello/index";
 import CounterRedux from "./CounterRedux/index";
+import AddRedux from "./AddRedux/index";
+import TodoList from "./todos/TodoList";
 
 export default function ReduxExamples() {
     return (
@@ -12,6 +14,8 @@ export default function ReduxExamples() {
                 <h2>Redux Examples</h2>
                 <HelloRedux />
                 <CounterRedux />
+                <AddRedux />
+                <TodoList />
             </div>
         </Provider>
     );
