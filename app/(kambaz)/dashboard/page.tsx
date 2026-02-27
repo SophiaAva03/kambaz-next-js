@@ -1,5 +1,12 @@
 "use client"
+/* eslint-disable react/jsx-key */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewCourse, deleteCourse, updateCourse } from "../courses/reducer";
+import { RootState } from "../store";
 
 import Link from "next/link";
 import Row from "react-bootstrap/Row";
@@ -14,11 +21,9 @@ import * as db from "../database";
 import { v4 as uuidv4 } from "uuid";
 import { FormControl } from "react-bootstrap";
 
-/* eslint-disable react/jsx-key */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export default function Dashboard() {
-    const [courses, setCourses] = useState<any[]>(db.courses);
+    const { courses } = useSelector((state: RootState) => state.coursesReducer);
+    const dispatch = useDispatch();
 
     const [course, setCourse] = useState<any>({
         _id: "0", name: "New Course", number: "New Number",
@@ -26,36 +31,15 @@ export default function Dashboard() {
         image: "/images/reactjs.jpg", description: "New Description"
     });
 
-    const addNewCourse = () => {
-        const newCourse = { ...course, _id: uuidv4() };
-        setCourses([...courses, newCourse ]);
-    };
-
-    const deleteCourse = (courseId: string) => {
-        setCourses(courses.filter((course) => course._id !== courseId));
-    };
-
-    const updateCourse = () => {
-        setCourses(
-            courses.map((c) => {
-                if (c._id === course._id) {
-                return course;
-                } else {
-                return c;
-                }
-            })
-        );
-    };
-
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
             <h5>New Course
                 <Button className="btn btn-primary float-end"
                         id="wd-add-new-course-click"
-                        onClick={addNewCourse} > Add </Button>
+                        onClick={() => dispatch(addNewCourse(course))} > Add </Button>
                 <Button className="btn btn-warning float-end me-2"
-                    onClick={updateCourse} id="wd-update-course-click">
+                    onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
                     Update </Button>
             </h5>
             <br />
@@ -85,7 +69,7 @@ export default function Dashboard() {
                                         <Button variant="primary"> Go </Button>
                                         <Button onClick={(event) => {
                                                 event.preventDefault();
-                                                deleteCourse(course._id);
+                                                dispatch(deleteCourse(course._id));
                                                 }} className="btn btn-danger float-end"
                                                 id="wd-delete-course-click">
                                                 Delete
