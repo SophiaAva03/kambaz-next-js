@@ -1,4 +1,5 @@
 "use client"
+
 /* eslint-disable react/jsx-key */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -7,7 +8,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCourse, deleteCourse, updateCourse } from "../courses/reducer";
 import { RootState } from "../store";
-
 import Link from "next/link";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -30,6 +30,12 @@ export default function Dashboard() {
         startDate: "2023-09-10", endDate: "2023-12-15",
         image: "/images/reactjs.jpg", description: "New Description"
     });
+
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+    const { enrollments } = db;
+
+    console.log("currentUser", currentUser);
+    console.log("enrollments", enrollments);
 
     return (
         <div id="wd-dashboard">
@@ -54,8 +60,15 @@ export default function Dashboard() {
             <hr />
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
-                <Row xs={1} md={5} className="g-4">
-                    {courses.map((course) => (
+                {currentUser && (<Row xs={1} md={5} className="g-4">
+                    {courses
+                    .filter((course) =>
+                    enrollments.some(
+                        (enrollment) =>
+                        enrollment.user === currentUser._id &&
+                        enrollment.course === course._id
+                        ))
+                    .map((course) => (
                         <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                             <Card>
                                 <Link href={`/courses/${course._id}/home`}
@@ -87,7 +100,7 @@ export default function Dashboard() {
                             </Card>
                         </Col>
                     ))}
-                </Row>
+                </Row>)}
             </div>
         </div>
     );
