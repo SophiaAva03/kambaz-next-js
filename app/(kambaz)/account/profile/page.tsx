@@ -5,6 +5,7 @@ import { RootState } from "../../store";
 import { setCurrentUser } from "../reducer";
 import { useRouter } from "next/navigation";
 import { Form, Button } from "react-bootstrap";
+import * as client from "../client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -14,13 +15,19 @@ export default function Profile() {
     const dispatch = useDispatch();
     const router = useRouter();
 
+    const updateProfile = async () => {
+        const updatedProfile = await client.updateUser(profile);
+        dispatch(setCurrentUser(updatedProfile));
+    };
+
     useEffect(() => {
         if (!currentUser) {
             router.push("/account/signin");
         }
     }, [currentUser, router]);
 
-    const signout = () => {
+    const signout = async () => {
+        await client.signout();
         dispatch(setCurrentUser(null));
         router.push("/account/signin");
     };
@@ -78,6 +85,8 @@ export default function Profile() {
                         <option value="FACULTY">Faculty</option>
                         <option value="STUDENT">Student</option>
                     </Form.Select>
+                    <button onClick={updateProfile} className="btn btn-primary w-25 mb-2"> Update </button>
+                    <br />
                     <Button
                         onClick={signout}
                         className="w-25 mb-2"
