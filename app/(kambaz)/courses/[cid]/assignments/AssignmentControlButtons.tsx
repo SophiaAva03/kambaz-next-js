@@ -1,8 +1,9 @@
+
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaCheckCircle, FaCircle, FaTrash } from "react-icons/fa";
 
 type Props = {
-  onDelete: () => void;
+  onDelete?: () => void;
 };
 
 export default function AssignmentControlButtons({ onDelete }: Props) {
