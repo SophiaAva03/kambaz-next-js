@@ -3,9 +3,11 @@ export default function labs() {
  return (
    <div id="wd-labs">
      <h1>Sophia Allen</h1>
-     <h2>Git Repository</h2>
+     <h2>Git Repositories</h2>
      <a href="https://github.com/SophiaAva03/kambaz-next-js" 
-      id="wd-github" target="_blank">GitHub Repository (Main Branch)</a><br/>
+      id="wd-github" target="_blank">React GitHub Repository (Main Branch)</a><br/>
+     <a href="https://github.com/SophiaAva03/kambaz-node-server-app" 
+      id="wd-github" target="_blank">Node Server GitHub Repository</a><br/>
      <h1>Labs</h1>
      <ul>
        <li>
